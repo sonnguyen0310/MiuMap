@@ -1,10 +1,10 @@
 # MiuMap
 Final project for MDP class
 
-Please work with the develop branch and resovle all conflict if had and make sure the application runable before you push the code
+**Please work with the develop branch and resovle all conflict if had and make sure the application runable before you push the code
 
 
-Task:
+**Task**:
 
 Init base project and libs: Hoang
 
@@ -19,7 +19,7 @@ Home Page + Map Search Direction (Daniel Abraha + Ben)
 Indoor (Text/ Audio/ Image)
 
 
-Libraries
+**Libraries
 
 Retrofit - Use to call API https://square.github.io/retrofit/
 
