@@ -8,7 +8,7 @@ Final project for MDP class
 
 Init base project and libs: Hoang
 
-Server - (Furican Ozbunaic)
+Server - (Furkan Ozbudak)
 
 Login/Logout + Registration (Habtom + Hicham)
 
