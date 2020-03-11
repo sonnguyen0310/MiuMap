@@ -9,4 +9,6 @@
     <string name="first_name_required">First name *</string>
     <string name="last_name_required">Last name *</string>
     <string name="email_required">Email *</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_hint">e.g. 641 541 9917</string>
 </resources>
