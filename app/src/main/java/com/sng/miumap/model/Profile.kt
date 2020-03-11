@@ -1,6 +1,16 @@
 package com.sng.miumap.model
 
-data class Profile(val id: String, val firstName: String, val lastName: String, val email: String, val imageUrl: String) {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Profile(
+    val id: String,
+    val firstName: String,
+    val lastName: String,
+    val email: String,
+    val imageUrl: String
+) : Parcelable {
 
     fun fullName() = "$firstName $lastName"
 

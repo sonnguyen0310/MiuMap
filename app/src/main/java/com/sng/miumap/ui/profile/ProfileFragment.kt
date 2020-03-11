@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.support.v4.app.Fragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.sng.miumap.R
@@ -18,7 +19,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var avatarImageView: ImageView
     private lateinit var nameTextView: TextView
-    private lateinit var updatePhotoImageButton: ImageButton
+    private lateinit var editProfileImageButton: ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +36,11 @@ class ProfileFragment : Fragment() {
 
         Picasso.get().load(profile.imageUrl).into(avatarImageView)
         nameTextView.text = profile.fullName()
+        editProfileImageButton.setOnClickListener {
+            val intent = Intent(context, EditProfileActivity::class.java)
+            intent.putExtra("profile", profile)
+            startActivityForResult(intent, EDIT_PROFILE_RESULT_CODE)
+        }
 
         return root
     }
@@ -42,7 +48,10 @@ class ProfileFragment : Fragment() {
     private fun initSubviews(view: View) {
         avatarImageView = view.findViewById(R.id.avatar_image_view)
         nameTextView = view.findViewById(R.id.name_text_view)
-        updatePhotoImageButton = view.findViewById(R.id.update_photo_image_button)
+        editProfileImageButton = view.findViewById(R.id.edit_profile_image_button)
     }
 
+    companion object {
+        const val EDIT_PROFILE_RESULT_CODE = 1
+    }
 }

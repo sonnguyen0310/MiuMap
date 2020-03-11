@@ -2,6 +2,11 @@
     <string name="app_name">MiuMap</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="edit_profile_title">Edit profile</string>
     <string name="menu_item_camera">Camera</string>
     <string name="menu_item_gallery">Gallery</string>
+    <string name="profile_photo">Profile photo</string>
+    <string name="first_name_required">First name *</string>
+    <string name="last_name_required">Last name *</string>
+    <string name="email_required">Email *</string>
 </resources>
