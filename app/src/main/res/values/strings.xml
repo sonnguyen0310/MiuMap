@@ -2,4 +2,6 @@
     <string name="app_name">MiuMap</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="menu_item_camera">Camera</string>
+    <string name="menu_item_gallery">Gallery</string>
 </resources>
