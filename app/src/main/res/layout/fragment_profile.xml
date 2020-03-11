@@ -56,4 +56,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
+    <TextView
+        android:id="@+id/email_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="@string/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_text_view" />
+
+    <TextView
+        android:id="@+id/email_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/email_title_text_view"
+        app:layout_constraintStart_toStartOf="@+id/email_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/email_title_text_view" />
+
+    <TextView
+        android:id="@+id/phone_number_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/phone_number"
+        app:layout_constraintEnd_toEndOf="@+id/email_text_view"
+        app:layout_constraintStart_toStartOf="@+id/email_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/email_text_view" />
+
+    <TextView
+        android:id="@+id/phone_number_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/phone_number_title_text_view"
+        app:layout_constraintStart_toStartOf="@+id/phone_number_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_title_text_view" />
+
 </android.support.constraint.ConstraintLayout>
