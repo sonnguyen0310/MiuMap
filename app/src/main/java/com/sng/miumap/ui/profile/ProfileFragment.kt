@@ -34,7 +34,8 @@ class ProfileFragment : Fragment() {
             "https://avatarfiles.alphacoders.com/125/thumb-125919.jpg"
         )
 
-        Picasso.get().load(profile.imageUrl).into(avatarImageView)
+        Picasso.get().load(profile.imageUrl).placeholder(R.drawable.ic_launcher_background)
+            .into(avatarImageView)
         nameTextView.text = profile.fullName()
         emailTextView.text = profile.email
         phoneNumberTextView.text = profile.phoneNumber ?: getString(R.string.not_applicable)
