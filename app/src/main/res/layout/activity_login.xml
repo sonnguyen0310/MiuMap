@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="59dp"
+        app:srcCompat="@drawable/log"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="72dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:textColor="#fff"
+        android:drawableLeft="@drawable/ic_action_user"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/editText3"
+        style="android:editTesxtSyle"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/editText"
+        android:layout_marginTop="28dp"
+        android:background="#11000000"
+        android:ems="10"
+        android:textColor="#fff"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <Button
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:text="Login"
+                android:textColor="#000"
+                android:background="@drawable/round_button"
+                android:onClick="OnSignIn"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="270dp"
+                android:textSize="18dp" />
+    <Button
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="155dp"
+        android:textColor="#000"
+        android:background="@drawable/round_button"
+        android:onClick="onNewAccount"
+        android:textSize="18dp"
+        android:text="Register Here" />
+</RelativeLayout>
+

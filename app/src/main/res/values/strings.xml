@@ -2,4 +2,8 @@
     <string name="app_name">MiuMap</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="Logout">logout</string>
+    <string name="Login">login</string>
+    <string name="password">password</string>
+    <string name="UserName">username</string>
 </resources>
