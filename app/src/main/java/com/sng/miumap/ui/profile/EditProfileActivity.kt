@@ -28,9 +28,7 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        val profile = intent.getParcelableExtra<Profile>("profile") ?: return
-        setupUI(profile)
+        setupUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -44,9 +42,7 @@ class EditProfileActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-            android.R.id.home -> {
-                showDiscardEditAlertDialog()
-            }
+            android.R.id.home -> showDiscardEditAlertDialog()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -91,17 +87,13 @@ class EditProfileActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.permission_required))
             .setMessage(getString(R.string.camera_permission_required_description))
-            .setPositiveButton(getString(R.string.settings)) { _, _ ->
-                val intent = Intent()
-                intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                intent.data = Uri.fromParts("package", packageName, null)
-                startActivity(intent)
-            }
+            .setPositiveButton(getString(R.string.settings)) { _, _ -> openSettings() }
             .setNegativeButton(R.string.cancel) { _, _ -> }
             .show()
     }
 
-    private fun setupUI(profile: Profile) {
+    private fun setupUI() {
+        val profile = intent.getParcelableExtra<Profile>("profile") ?: return
         with(profile) {
             Picasso.get().load(imageUrl).placeholder(R.drawable.ic_launcher_background)
                 .into(profile_image_view)
@@ -113,16 +105,16 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     fun changeProfileImageButtonClicked(view: View) {
-        val popupMenu = PopupMenu(view.context, view)
-        popupMenu.menuInflater.inflate(R.menu.choose_photo_picker_menu, popupMenu.menu)
-        popupMenu.setOnMenuItemClickListener {
+        val menu = PopupMenu(view.context, view)
+        menu.menuInflater.inflate(R.menu.choose_photo_picker_menu, menu.menu)
+        menu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.choose_photo_camera -> openCameraIfApplicable()
                 R.id.choose_photo_gallery -> openGallery()
             }
             true
         }
-        popupMenu.show()
+        menu.show()
     }
 
     private fun openGallery() {
@@ -146,6 +138,13 @@ class EditProfileActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivityForResult(intent, OPEN_CAMERA_REQUEST_CODE)
         }
+    }
+
+    private fun openSettings() {
+        val intent = Intent()
+        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+        intent.data = Uri.fromParts("package", packageName, null)
+        startActivity(intent)
     }
 
     companion object {
