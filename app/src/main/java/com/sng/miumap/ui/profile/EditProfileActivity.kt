@@ -1,6 +1,7 @@
 package com.sng.miumap.ui.profile
 
 import android.Manifest.permission.CAMERA
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.content.pm.PackageManager.PERMISSION_GRANTED
@@ -49,9 +50,14 @@ class EditProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == OPEN_CAMERA_REQUEST_CODE) {
+        if (resultCode != RESULT_OK) {
+            return
+        }
+        if (requestCode == OPEN_CAMERA_REQUEST_CODE) {
             val image = data?.extras?.get("data") as Bitmap
             profile_image_view.setImageBitmap(image)
+        } else if (requestCode == OPEN_GALLERY_REQUEST_CODE) {
+            profile_image_view.setImageURI(data?.data)
         }
     }
 
@@ -62,16 +68,35 @@ class EditProfileActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode != REQUEST_CAMERA_PERMISSION_REQUEST_CODE) {
-            return
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.first() == PERMISSION_GRANTED) {
+                    openCamera()
+                } else if (grantResults.first() == PERMISSION_DENIED &&
+                    !shouldShowRequestPermissionRationale(CAMERA)
+                ) {
+                    showCameraPermissionRequiredAlertDialog()
+                }
+            }
+            REQUEST_GALLERY_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.first() == PERMISSION_GRANTED) {
+                    openGallery()
+                } else if (grantResults.first() == PERMISSION_DENIED &&
+                    !shouldShowRequestPermissionRationale(READ_EXTERNAL_STORAGE)
+                ) {
+                    showGalleryPermissionRequiredAlertDialog()
+                }
+            }
         }
-        if (grantResults.first() == PERMISSION_GRANTED) {
-            openCamera()
-        } else if (grantResults.first() == PERMISSION_DENIED &&
-            !shouldShowRequestPermissionRationale(CAMERA)
-        ) {
-            showCameraPermissionRequiredAlertDialog()
-        }
+    }
+
+    private fun showGalleryPermissionRequiredAlertDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.permission_required))
+            .setMessage(getString(R.string.gallery_permission_required_description))
+            .setPositiveButton(getString(R.string.settings)) { _, _ -> openSettings() }
+            .setNegativeButton(R.string.cancel) { _, _ -> }
+            .show()
     }
 
     private fun showDiscardEditAlertDialog() {
@@ -110,14 +135,32 @@ class EditProfileActivity : AppCompatActivity() {
         menu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.choose_photo_camera -> openCameraIfApplicable()
-                R.id.choose_photo_gallery -> openGallery()
+                R.id.choose_photo_gallery -> openGalleryIfApplicable()
             }
             true
         }
         menu.show()
     }
 
+    private fun openGalleryIfApplicable() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            openGallery()
+            return
+        }
+        if (checkSelfPermission(READ_EXTERNAL_STORAGE) == PERMISSION_GRANTED) {
+            openGallery()
+        } else {
+            requestPermissions(
+                arrayOf(READ_EXTERNAL_STORAGE),
+                REQUEST_GALLERY_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+
     private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        startActivityForResult(intent, OPEN_GALLERY_REQUEST_CODE)
     }
 
     private fun openCameraIfApplicable() {
@@ -130,7 +173,6 @@ class EditProfileActivity : AppCompatActivity() {
         } else {
             requestPermissions(arrayOf(CAMERA), REQUEST_CAMERA_PERMISSION_REQUEST_CODE)
         }
-
     }
 
     private fun openCamera() {
@@ -149,6 +191,8 @@ class EditProfileActivity : AppCompatActivity() {
 
     companion object {
         const val REQUEST_CAMERA_PERMISSION_REQUEST_CODE = 0
-        const val OPEN_CAMERA_REQUEST_CODE = 1
+        const val REQUEST_GALLERY_PERMISSION_REQUEST_CODE = 1
+        const val OPEN_CAMERA_REQUEST_CODE = 2
+        const val OPEN_GALLERY_REQUEST_CODE = 3
     }
 }
