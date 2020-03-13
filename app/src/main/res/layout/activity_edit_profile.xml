@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.profile.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/banner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="75dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="3dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@android:color/secondary_text_dark"
+                app:civ_shadow_radius="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <ImageButton
+                android:id="@+id/change_profile_picture_image_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:onClick="changeProfileImageButtonClicked"
+                android:src="@android:drawable/ic_menu_camera"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image_view" />
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="4dp"
+            android:text="@string/first_name_required" />
+
+        <EditText
+            android:id="@+id/first_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="4dp"
+            android:text="@string/last_name_required" />
+
+        <EditText
+            android:id="@+id/last_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="4dp"
+            android:text="@string/email_required" />
+
+        <EditText
+            android:id="@+id/email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="4dp"
+            android:text="@string/phone_number" />
+
+        <EditText
+            android:id="@+id/phone_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/phone_number_hint"
+            android:inputType="phone" />
+    </LinearLayout>
+</ScrollView>
